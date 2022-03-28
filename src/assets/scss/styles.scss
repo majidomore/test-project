@@ -1,14 +1,7 @@
 // Imports
-@import "_variables";
+@import "./abstracts/variables";
+@import "./components/profile-component";
 
 body {
-  background-color: $BG_COLOR;
-}
-
-.App-logo {
-  width: 200px;
-  height: 200px;
-}
-.ml-6 {
-  margin-left: 20px;
+  font-family: "Montserrat", sans-serif;
 }
