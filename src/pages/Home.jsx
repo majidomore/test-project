@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProfileComponent from "../components/ProfileComponent";
+import { mainApi } from "../apis";
 
 const Home = () => {
   let [profiles, setProfiles] = useState([]);
   let http = axios;
 
-  const getProfiles = async () => {
-    let res = await http.get(
-      "https://623b812c2e056d1037f389c0.mockapi.io/Users"
-    );
-
-    setProfiles((profiles = res.data));
-  };
-
   useEffect(() => {
+    const getProfiles = async () => {
+      let res = await http.get(mainApi);
+
+      setProfiles(res.data);
+    };
+
     getProfiles();
   }, []);
 
-  if (profiles.length !== 0) {
+  if (profiles) {
     return (
       <>
-        {profiles.map((user, index) => {
+        {profiles.map((user) => {
           return (
-            <React.Fragment key={index}>
+            <React.Fragment key={user.id}>
               <ProfileComponent
                 img={user.profile_picture}
                 username={user.username}
